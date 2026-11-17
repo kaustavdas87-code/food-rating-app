@@ -1,0 +1,88 @@
+# Full Stack Tech Test: .NET
+
+![Preview of Frontend](preview.png)
+
+A .NET 8 Web API that wraps the UK Food Standards Agency (FSA) public food hygiene ratings API, with a lightweight frontend served as static files.
+
+## Prerequisites
+
+- [.NET SDK 8.0](https://dotnet.microsoft.com/download/dotnet/8.0)
+- Internet access (required to run the API against the live FSA service — not required for running tests, which use stub data)
+- A suitable development environment (e.g. VS Code, JetBrains Rider, Visual Studio)
+
+## Project Structure
+
+```
+dotnet-exercise/
+├── FoodRatingApp/          — Main Web API (Controllers, Services, Model)
+├── FoodRatingApp.Test/     — xUnit unit tests
+├── FoodRatingApp.Spec/     — Reqnroll BDD specs
+│   ├── Features/           — Feature files (example + candidate tasks)
+│   └── StepDefinitions/    — Step definitions (example + skeleton to implement)
+└── FoodRatingApp.sln
+```
+
+## Getting Started
+
+### Restore dependencies
+
+```bash
+dotnet restore
+```
+
+### Build the solution
+
+```bash
+dotnet build FoodRatingApp.sln
+```
+
+### Run the API
+
+```bash
+dotnet run --project ./FoodRatingApp/FoodRatingApp.csproj
+```
+
+Once running:
+
+| URL | Description |
+|-----|-------------|
+| `https://localhost:5001` | Frontend UI |
+| `https://localhost:5001/api` | List of authorities (JSON) |
+| `https://localhost:5001/api/{id}` | Ratings for a specific authority (JSON) |
+
+## Running Tests
+
+### Run all tests
+
+```bash
+dotnet test FoodRatingApp.sln
+```
+
+### Run unit tests only
+
+```bash
+dotnet test FoodRatingApp.Test/FoodRatingApp.Test.csproj
+```
+
+### Run BDD specs only
+
+```bash
+dotnet test FoodRatingApp.Spec/FoodRatingApp.Spec.csproj
+```
+
+### Run a specific feature file
+
+```bash
+dotnet test FoodRatingApp.Spec/FoodRatingApp.Spec.csproj --filter "FullyQualifiedName~FoodRatings"
+dotnet test FoodRatingApp.Spec/FoodRatingApp.Spec.csproj --filter "FullyQualifiedName~AuthorityList"
+dotnet test FoodRatingApp.Spec/FoodRatingApp.Spec.csproj --filter "FullyQualifiedName~AuthorityRatings"
+```
+
+## References
+
+| Library | Description | Documentation |
+|---------|-------------|---------------|
+| [Reqnroll](https://reqnroll.net) | BDD test framework for .NET (successor to SpecFlow) | [docs.reqnroll.net](https://docs.reqnroll.net) |
+| [Reqnroll + xUnit](https://docs.reqnroll.net/latest/installation/setup-reqnroll-project.html) | Setting up Reqnroll with xUnit | [Installation guide](https://docs.reqnroll.net/latest/installation/setup-reqnroll-project.html) |
+| [xUnit](https://xunit.net) | Unit testing framework for .NET | [xunit.net/docs](https://xunit.net/docs/getting-started/netcore/cmdline) |
+| [AwesomeAssertions](https://github.com/AwesomeAssertions/AwesomeAssertions) | Fluent assertion library for .NET | [awesomeassertions.com](https://awesomeassertions.com) |
